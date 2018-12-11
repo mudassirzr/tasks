@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Accordian and Collapse</title>
+</head>
+<body>
+	<style>
+		#accordion li {
+			overflow: hidden;
+		}
+		#accordion label + input[type='radio'] {
+		     display: none;
+		}
+		#accordion .content {
+		    transform: rotateX(90deg);
+		    transform-origin: top;
+		    padding:10px;
+		    font-size:19px;
+		    line-height:26px;
+		    background-color:#dadada;
+		    height: 0px;
+		}
+		#accordion label + input[type='radio']:checked + .content {
+		    transform:translate(0px,0px);
+		    transition: 0.3s;
+		    height: 100px;
+		}
+		/*COLLAPSE*/
+		#collapse li {
+			overflow: hidden;
+		}
+		#collapse label + input[type='checkbox'] {
+		     display: none;
+		}
+		#collapse .content {
+		    transform: translate(0,-110px);
+		    padding:10px;
+		    font-size:19px;
+		    line-height:26px;
+		    background-color:#dadada;
+		    transition: 0.3s;
+		    height: 0px;
+		}
+		#collapse label + input[type='checkbox']:checked + .content {
+		    transform:translate(0px,0px);
+		    transition: 0.3s;
+		    height: 100px;
+		}
+	</style>
+	<div class="accordion-block">
+		<h1>This is an Accordian</h1>
+		<ul id="accordion">
+			<li>
+		        <label for="first-accordian">First Accordian</label>
+		        <input type="radio" name="accordion" id="first-accordian">
+		        <div class="content">
+		            <p>THIS IS FIRST ACCORDIAN</p>
+		        </div>
+		    </li>
+		    <li>
+		        <label for="second-accordian">Second Acordian</label>
+		        <input type="radio" name="accordion" id="second-accordian">
+		        <div class="content">
+		            <p>THIS IS SECOND ACCORDIAN</p>
+		        </div>
+		    </li>
+		</ul>
+	</div>
+	<div class="collapse-block">
+		<h1>This is a Collapse</h1>
+		<ul id="collapse">
+			<li>
+		        <label for="first-collapse">First Collapse</label>
+		        <input type="checkbox" name="collapse" id="first-collapse">
+		        <div class="content">
+		            <p>THIS IS FIRST ACCORDIAN</p>
+		        </div>
+		    </li>
+		    <li>
+		        <label for="second-collapse">Second Collapse</label>
+		        <input type="checkbox" name="collapse" id="second-collapse">
+		        <div class="content">
+		            <p>THIS IS SECOND ACCORDIAN</p>
+		        </div>
+		    </li>
+		</ul>
+	</div>
+
+
+
+</body>
+</html>

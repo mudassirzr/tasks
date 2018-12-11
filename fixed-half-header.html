@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fixed Half Header</title>
+</head>
+<body>
+	<style>
+		body {
+			margin: 0;
+			overflow: hidden;
+		}
+		.main {
+			display: flex;
+		}
+		.left-side-block {
+			height: 200vh;
+			background: #dadada;
+			width: 50%;
+			position: relative;
+		}
+		.right-side-block {
+			height: 200vh;
+			background: #fafafa;
+			width: 50%;
+			position: relative;
+			transform: translate(0);
+		}
+		.header-top {
+			position: fixed;
+			top: 0;
+			left: 0;
+			background: #000;
+			padding:30px 0;
+			width: 100%;
+		}
+		.right-body {
+			height: 90%;
+			width: 100%;
+			position: relative;
+			overflow: auto;
+			height: 500px;
+		}
+	</style>
+	<div class="main">
+		<div class="left-side-block">
+			<h1>This is left side block</h1>
+		</div>
+		<div class="right-side-block">
+			<div class="header-top"></div>
+			<div class="right-body">
+				<h1>This is right side block</h1>
+				<h1>This is right side block</h1>
+				<h1>This is right side block</h1>
+				<h1>This is right side block</h1>
+				<h1>This is right side block</h1>
+				<h1>This is right side block</h1>
+				<h1>This is right side block</h1>
+				<h1>This is right side block</h1>
+				<h1>This is right side block</h1>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

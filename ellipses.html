@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2 line ellipses using before and after</title>
+</head>
+<body>
+    <style>
+    .item-new.width-240 {
+        width: 240px;
+    }
+    .item-new {
+        float: left;
+        background-color: #fff;
+        width: 190px;
+        padding: 4px;
+        margin: 1px 0 0 2px;
+    }
+    .item-new.width-240 dl {
+        width: 240px;
+    }
+    .item-new .item-block {
+        width: 190px;
+        z-index: 1;
+        position: relative;
+    }
+    body, html, h1, h2, h3, h4, h5, h6, input, textarea, table, th, td, embed, blockquote, ul, ol, li, dl, dt, dd, div, form, legend, abbr, img, video, footer, header, menu, output, section, i, strong, sub, sup, p {
+        margin: 0;
+        padding: 0;
+    }
+    .item-new .item-block dt {
+        position: relative;
+    }
+    .item-new .item-block dt .p-box {
+        display: block;
+        position: relative;
+    }
+    .item-new .item-block dt .p-box .img-box {
+        overflow: hidden;
+        position: relative;
+    }
+    .img-box {
+        /*position: relative;*/
+        display: block;
+    }
+    .litb-icon-current-icon {
+        position: absolute;
+        top: -1px;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 1px;
+    }
+    .litb-icon-current-icon.left {
+        left: -1px;
+    }
+    .right {
+        text-align: right;
+        color: #999;
+        font-size: 12px;
+    }
+    .litb-icon-current-icon.right {
+        right: -1px;
+    }
+    .item-new .free-shipping-b dt .prod-descrption-box {
+        width: 100%;
+        height: 20px;
+        z-index: 30;
+        display: none;
+    }
+    .item-new .prod-name {
+        overflow: hidden;
+        word-wrap: break-word;
+        color: #666;
+        padding: 0;
+        font-size: 12px;
+        line-height: 13px;
+        margin: 5px 0 2px 0;
+        height: 25px;
+    }
+    .item-new .prod-name a .prod-name-title {
+        height: 25px;
+        display: inline-block; 
+    }
+    .item-new .prod-name a .prod-name-title::before {
+        content: "";
+        float: left;
+        width: 1px;
+        height: 26px;
+        display: inline-block;
+    }
+    .item-new .prod-name a .prod-name-title > :first-child {
+        float: right;
+        margin-left: -1px;
+        width: 100%;
+    }
+    .item-new .prod-name a .prod-name-title::after {
+        content: "...";
+        position: relative;
+        left: 100%;
+        top: -13px;
+        float: right;
+        width: 20px;
+        margin-left: -20px;
+        padding-left: 1px;
+        text-align: center;
+        background: #fff;
+    }
+    .item-new .prod-item-price {
+        margin-bottom: 0;
+        direction: ltr;
+        text-align: left;
+    }
+    </style>
+    <div class="widget item-new tips-hooker height-312 width-240">
+    <!-- <dl class="item-block free-shipping-b" style="height: 380px;"> -->
+        <!-- <dt>
+            <a class="p-box ctr-track" target="_blank" href="#">
+                <div class="img-box">
+                    <img class="prod_img" src="jacket.jpg" width="240" height="312">              
+                </div>
+                <div class="prod-descrption-box  ">
+                        <div class="opacity-div"></div>
+                        <div class="show-popover-cont">
+                        </div>
+                </div>
+            </a>  
+        </dt>    -->
+
+        <div class="prod-name">
+            <a class="ctr-track" target="_blank" href="#">
+               <span class="prod-name-title">
+                   <span>Men's Daily Vintage / Basic Fall / Winter Plus Size Long Jacket, Solid Colored </span>
+               </span>
+            </a>
+        </div>
+    <!-- </dl> -->
+</div>
+<!-- Input type with clickable progress -->
+    <progress value="20" max="100">
+</body>
+</html>
