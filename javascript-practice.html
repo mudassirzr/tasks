@@ -1,0 +1,40 @@
+<html>
+<body>
+  <div>Begin</div>
+  <ul>
+    <li>Information</li>
+  </ul>
+
+  <div>End</div>
+  <table id="table">
+  <tr>
+    <td>one</td><td>two</td>
+  </tr>
+  <tr>
+    <td>three</td><td>four</td>
+  </tr>
+</table>
+
+<script>
+  // get the content of the first row, second cell
+  alert( table.rows[0].cells[1].innerHTML ) // "two"
+</script>
+  <script>
+    /*for (let i = 0; i < document.body.childNodes.length; i++) {
+      alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
+    }*/
+    /*for (let node of document.body.childNodes) {
+  alert(node); // shows all nodes from the collection
+}
+*/   /*for (let prop of document.body.children) alert(prop);*/ 
+
+ </script>
+  <!-- ...more stuff... -->
+  <!-- NOTES 
+    elem.childNodes[0] === elem.firstChild
+    elem.childNodes[elem.childNodes.length - 1] === elem.lastChild
+    elem.hasChildNodes() - to check if an element has any child nodes.
+
+  -->
+</body>
+</html>

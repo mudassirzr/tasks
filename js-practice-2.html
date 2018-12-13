@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="elem">
+  <div id="elem-content">Element</div>
+</div>
+<form>
+	<input name="search" type="text">
+</form>
+
+<script>
+	let ab=form.getElementsByTagName('input')[0];
+	alert(ab);
+  alert(elem); // DOM-element with id="elem"
+  alert(window.elem); // accessing global variable like this also works
+
+  // for elem-content things are a bit more complex
+  // that has a dash inside, so it can't be a variable name
+  alert(window['elem-content']); // ...but accessible using square brackets [...]
+
+/*
+  Method 				Searches by... 	Can call on an element? 			Live?
+getElementById 			id 					- 								-
+getElementsByName 		name 				- 								✔
+getElementsByTagName 	tag or '*' 			✔ 								✔
+getElementsByClassName 	class 				✔ 								✔
+querySelector 			CSS-selector 		✔ 								-
+querySelectorAll 		CSS-selector 		✔ 								-
+
+
+    There is elem.matches(css) to check if elem matches the given CSS selector.
+    There is elem.closest(css) to look for the nearest ancestor that matches the given CSS-selector. The elem itself is also checked.
+  	elemA.contains(elemB) returns true if elemB is inside elemA (a descendant of elemA) or when elemA==elemB.  
+	
+*/
+</script>
+</body>
+</html>
