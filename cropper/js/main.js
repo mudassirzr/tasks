@@ -284,7 +284,7 @@ window.onload = function () {
           // alert('called-copy');
           evt.stopPropagation()
           evt.preventDefault()
-          var drop_files = evt.dataTransfer.files  // FileList object.
+          var drop_files = evt.dataTransfer.files // FileList object.
           // var file = drop_files[0]         // File     object.
           console.log(evt.dataTransfer.files,evt);
           if (URL) {
@@ -293,6 +293,9 @@ window.onload = function () {
             var file;
             // alert(drop_files[0].name);
             if (cropper && files && files.length) {
+              document.getElementById('main').style.overflow="visible";
+              document.getElementById('main').style.height="auto";
+              document.getElementById('fileDrop').style.display="none";
               file = files[0];
               // console.log('1 image');
               if (/^image\/\w+/.test(file.type)) {
@@ -312,8 +315,10 @@ window.onload = function () {
               }
             }
         } else {
-          inputImage.disabled = true;
-          inputImage.parentNode.className += ' disabled';
+          file_drop.disabled = true;
+          file_drop.parentNode.className += ' disabled';
+          document.getElementById('main').style.overflow="hidden";
+          document.getElementById('main').style.height=0;
         }
 
         },
@@ -325,10 +330,12 @@ window.onload = function () {
 
   if (URL) {
     inputImage.onchange = function () {
-      var files = this.files || ui.draggable;
+      var files = this.files;
       var file;
-
       if (cropper && files && files.length) {
+        document.getElementById('main').style.overflow="visible";
+        document.getElementById('main').style.height="auto";
+        document.getElementById('fileDrop').style.display="none";
         file = files[0];
         if(files[1] === undefined) {
           console.log('1 image');
@@ -364,6 +371,8 @@ window.onload = function () {
                   // var uploads = document.getElementById('multiImages');
                   $('#multiUpload').fadeIn();
                   $('#multiImages').append("<div class=\"image-card\"><img src='" + image.src + "'></div>");
+            } else {
+              alert('File selected not an image');
             }
           }
 
@@ -371,9 +380,16 @@ window.onload = function () {
       }
     };
   } else {
-    inputImage.disabled = true;
-    inputImage.parentNode.className += ' disabled';
+      inputImage.disabled = true;
+      inputImage.parentNode.className += ' disabled';
+      document.getElementById('main').style.overflow="hidden";
+      document.getElementById('main').style.height=0;
   }
+  // while (inputImage || file_drop) {
+  //   console.log(inputImage);
+  //   console.log(file_drop);
+  //   document.getElementById('main').style.display="block";
+  // }
   // var galleryImage = document.getElementByClassName('.gallery-images').querySelector('.image-card img');
   // galleryImage.onclick()
 

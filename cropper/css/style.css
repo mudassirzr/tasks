@@ -16,8 +16,31 @@ body {
   text-rendering: optimizeLegibility;
   margin: 0;
 }
-h1 {
+.navbar-brand {
+	color: #fff;
+	text-shadow: 4px 4px 10px #000;
+}
+.navbar-brand:hover {
+    color:#fff;
+    text-shadow: none;
+}
+.navbar-brand h1 {
+
+	font-weight: 600;
+	font-family: 'ZCOOL KuaiLe', cursive;
+	
+	margin-bottom: 0;
+}
+.navbar-brand p {
+	/*color: #fff;*/
+	font-size: 9px;
 	font-weight: 300;
+	margin-bottom: 0;
+	line-height: 12px;
+	letter-spacing: 3px;
+	word-spacing: 3px;
+	text-align: center;
+	/*text-shadow: 4px 4px 10px #000;*/
 }
 .brand-logo {
 	font-weight: 200;
@@ -29,7 +52,8 @@ h1 {
 header {
 	-moz-box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
 	box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
-	border-bottom: 1px solid rgba(0,0,0,0.14);
+	/*border-bottom: 1px solid rgba(0,0,0,0.14);*/
+	background: linear-gradient(#0056B3,#0073EF);
 }
 #collapsibleNavbar {
 	height: 100%;
@@ -48,6 +72,7 @@ header {
 .nav-item .nav-link {
 	font-weight: 600;
 	padding:10px 20px !important;
+	color: #fff;
 }
 .nav-item .nav-link:hover {
 	background: rgba(0,0,0,0.1);
@@ -318,18 +343,37 @@ label.btn {
 
 
 /*Custom CSS*/
+#main {
+	margin: 30px 0;
+}
+.card {
+	border: none;
+	border-radius: 0;
+	box-shadow: 5px 8px 15px 0 rgba(32,33,36,0.4);
+	border-radius: 5px;
+	cursor: grab;
+	cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+.card:active {
+	cursor: grabbing;
+	cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
 .card-block img {
 	width: 100%;
+	border-radius: 5px;
 }
 .recent-images h2 {
-	font-weight: 300;
-	padding: 15px 0;
-    background: linear-gradient(to bottom, #ccc,#f8f8f8);
-    border-radius: 60px;
-    margin-top: 10px;
-
+	font-weight: 600;
+	padding: 15px 20px;
+    background: linear-gradient(to right, #0056B3,transparent);
+    /*border-radius: 60px;*/
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 4px 4px 10px #000;
 }
-.upload-button {
+ {
 	cursor: pointer;
 	width: 45%;
 	padding: 20px;
@@ -343,30 +387,46 @@ label.btn {
 }
 .upload-section {
 	/*height:200px;*/
-	width:100%;
-	border:2px dashed rgba(0,0,0,0.25);
-	margin: 10px 0 30px 0;
+	width:70%;
+	border:2px dashed #0056B3;
+	margin: 40px auto;
+	background: linear-gradient(#AAD2FC,#F4F9FF);
+	padding: 30px 30px 10px 30px;
+	box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
 }
 .upload-section h4 {
 	margin-top: 20px;
-	font-size: 18px;
+	font-size: 22px;
 	font-weight: 300;
+	color: #0056B3;
 }
 .upload-section h4 span {
 	display: block;
 	font-size:30px;
 	margin: 20px 0;
 }
-.gallery-button {
+.upload-section h4 .fa {
+	font-size: 60px;
+	color: rgba(255,255,255,0.3);
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #0056B3;
+	margin: 0;
+}
+.gallery-button, .upload-button {
 	/*display: inline-block;*/
 	cursor: pointer;
 	width: 45%;
-	padding: 20px;
-	background:linear-gradient(to bottom, #ccc,#f8f8f8);
+	padding: 10px;
+	background: linear-gradient(#0056B3,#218CFF);
 	margin: 5px auto;
-	color: #565656;
+	color: #fff;
 	border-radius: 30px;
 	box-shadow: 0 1px 8px 0 rgba(32,33,36,0.28);
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.gallery-button:active, .upload-button:active {
+	box-shadow: none;
 }
 .button-section {
 	display: flex;
@@ -400,8 +460,12 @@ label.btn {
 	width: 100px;
 	height: 80px;
 	position: relative;
-	border: 2px solid #dadada;
+	/*border: 2px solid #0056B3;*/
 	margin: 0 5px;
+	background: #fff;
+	
+	/*box-shadow: 5px 8px 15px 0 rgba(32,33,36,0.4);*/
+	
 }
 .image-card img {
 	max-height: 100%;
@@ -417,6 +481,8 @@ label.btn {
 	cursor: grab;
 	cursor: -moz-grab;
     cursor: -webkit-grab;
+    box-shadow: 4px 3px 5px rgba(0,0,0,0.4);
+    border-radius: 5px;
 }
 .image-card img:active {
 	cursor: grabbing;
@@ -471,4 +537,47 @@ label.btn {
 	right: -125px;
 	bottom: -16px;
 	border-radius: 0 0 10px 10px !important; 
+}
+.overlay-buttons {
+	top:0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 5px;
+	position: absolute;
+	background: rgba(0,0,0,0.3);
+	display: none;
+}
+.card:hover .overlay-buttons {
+	display: block;
+	animation: fadeIn;
+	animation-duration: 0.5s;
+}
+.overlay-buttons > .buttons {
+	text-align: center;
+	top: 50%;
+	position: absolute;
+	width: 100%;
+	transform: translateY(-50%);
+}
+.overlay-buttons .buttons button {
+	/*display: table-cell;*/
+	background: rgba(0,0,0,0.4);
+	border: none;
+}
+.overlay-buttons .buttons button:hover {
+	background: #000;
+}
+.overlay-buttons .buttons button .fa {
+	/*opacity: 0.8;*/
+	font-size: 20px;
+	color: #fff;
+}
+@keyframes fadeIn {
+	from{opacity: 0;}
+	to{opacity: 1;}
+}
+#main {
+	overflow: hidden;
+	height: 0;
 }

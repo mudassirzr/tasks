@@ -2932,6 +2932,9 @@
      * @returns {HTMLCanvasElement} - The result canvas.
      */
     getCroppedCanvas: function getCroppedCanvas() {
+      // Custom Code
+      // var imageInfo = document.getElementById('showData');
+      // imageInfo.value='';
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       if (!this.ready || !window.HTMLCanvasElement) {

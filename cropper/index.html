@@ -11,9 +11,10 @@
   	<!-- Font Awesome CSS -->
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Font CSS -->
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
     <!-- Image Cropper CSS -->
-	<title>Image Cropper Tool</title>
+	<title>CROP IT - Image Cropper Tool</title>
 </head>
 <body>
 	<!-- <header>
@@ -38,7 +39,8 @@
 					<nav class="navbar navbar-expand-md">
 						<!-- Brand -->
 						<a href="#" class="navbar-brand">
-							<h1>Image Cropper Tool</h1>
+							<h1> CR<span class="fa fa-crop"></span>P It !</h1>
+							<p>THE IMAGE CROPPING TOOL</p>
 						</a>
 						<!-- Toggler/collapsibe Button -->
 					    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -60,6 +62,32 @@
 				</div>
 			</div>
 		</header>
+		<section class="uploads">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div id="fileDrop" class="upload-section">
+							<h4 class="text-center"><span class="fa fa-cloud-upload"></span>Drop Images Here to Edit<span>OR</span></h4>
+							<div class="button-section" style="">
+								<label class="upload-button" for="inputImage" title="Upload image file">
+							        <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*" multiple>
+							        <span class="docs-tooltip" data-toggle="tooltip" title="Upload your image here">
+							      		Upload Image / Images
+							      		<span class="fa fa-upload"></span>
+							    	</span>
+							  	</label>
+							  	<label id="galleryShow" href="#" class="gallery-button">
+							  		<span class="docs-tooltip" data-toggle="tooltip" title="Select Image from Gallery">
+							      		Select from Gallery
+							      		<span class="fa fa-image"></span>
+							    	</span>
+							  	</label>
+						  	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 		<section id="main">
 			<div class="container">
 				<div class="row">
@@ -68,24 +96,6 @@
 							<div class="container">
 							    <div class="row">
 									<div class="col-lg-12">
-										<div id="fileDrop" class="upload-section">
-											<h4 class="text-center">Drag Images Here to Edit<span>OR</span></h4>
-											<div class="button-section" style="">
-												<label class="upload-button" for="inputImage" title="Upload image file">
-											        <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*" multiple>
-											        <span class="docs-tooltip" data-toggle="tooltip" title="Upload your image here">
-											      		Upload Image / Images
-											      		<span class="fa fa-upload"></span>
-											    	</span>
-											  	</label>
-											  	<label id="galleryShow" href="#" class="gallery-button">
-											  		<span class="docs-tooltip" data-toggle="tooltip" title="Select Image from Gallery">
-											      		Select from Gallery
-											      		<span class="fa fa-image"></span>
-											    	</span>
-											  	</label>
-										  	</div>
-										</div>
 									<!-- <h3>Demo:</h3> -->
 										<div class="img-container">
 										  	<img class="img-responsive" src="images/picture.jpg" alt="Picture">
@@ -275,10 +285,24 @@
 							                  <span aria-hidden="true">&times;</span>
 							                </button>
 							              </div>
-							              <div class="modal-body"></div>
+							              <div class="modal-body">
+							              	
+							              </div>
+							              <!-- <div>
+							              	<h1>Image Details</h1>
+							              	<button type="button" class="btn btn-secondary" data-method="getImageData" data-option="" data-target="#showData">
+									          <span class="docs-tooltip" data-toggle="tooltip" title="cropper.getImageData()">
+									            See Image Details
+									          </span>
+									        </button>
+							              </div> 
+							              <textarea id="showData">
+							              	
+							              </textarea>-->
 							              <div class="modal-footer">
-							                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							                <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
+							                <button type="button" class="btn btn-default" data-dismiss="modal">Continue Editing</button>
+							                <a onclick="resetCanvas();" class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
+							                <!-- <button id="showUpload" onclick="resetCanvas();"></button> -->
 							              </div>
 							            </div>
 							          </div>
@@ -602,27 +626,83 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="recent-images">
-							<h2 class="text-center">Recently Cropped Images</h2>
+							<h2>Recently Cropped Images</h2>
 							<div class="card-columns">
 			                    <div class="card">
 			                        <div class="card-block">
 			                            <!-- <img draggable="true" draggable="true" ondragend="drag(event)" src="https://i2.wp.com/www.teaforturmeric.com/wp-content/uploads/2016/11/thumb_DSC_0269_1024.jpg?fit=768%2C1024"> -->
 			                            <img src="https://i2.wp.com/www.teaforturmeric.com/wp-content/uploads/2016/11/thumb_DSC_0269_1024.jpg?fit=768%2C1024">
+			                            <div class="overlay-buttons">	
+		                            		<div class="buttons">
+		                            			<button type="button" class="btn btn-primary" data-method="reset" title="Edit this image">
+										            <span >
+										              <span class="fa fa-edit"></span>
+										            </span>
+										        </button>
+										        <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Delete this image">
+										            <span>
+										              <span class="fa fa-trash-o"></span>
+										            </span>
+										        </button>
+		                            		</div>
+			                            </div>
 			                        </div>
 			                    </div>
 			                    <div class="card">
 			                        <div class="card-block">
 			                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsyGBwrBZ9It0o74ZhcCiNcwESUGVUbextWOSFZGeKNqxqMZl0KQ">
+			                        	<div class="overlay-buttons">	
+		                            		<div class="buttons">
+		                            			<button type="button" class="btn btn-primary" data-method="reset" title="Edit this image">
+										            <span >
+										              <span class="fa fa-edit"></span>
+										            </span>
+										        </button>
+										        <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Delete this image">
+										            <span>
+										              <span class="fa fa-trash-o"></span>
+										            </span>
+										        </button>
+		                            		</div>
+			                            </div>
 			                        </div>
 			                    </div>
 			                    <div class="card">
 			                        <div class="card-block">
 			                            <img src="https://www.errenskitchen.com/wp-content/uploads/2016/09/peppadew-Moroccan-Spiced-Couscous4-e1510601910213.jpg">
+			                            <div class="overlay-buttons">	
+		                            		<div class="buttons">
+		                            			<button type="button" class="btn btn-primary" data-method="reset" title="Edit this image">
+										            <span >
+										              <span class="fa fa-edit"></span>
+										            </span>
+										        </button>
+										        <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Delete this image">
+										            <span>
+										              <span class="fa fa-trash-o"></span>
+										            </span>
+										        </button>
+		                            		</div>
+			                            </div>
 			                        </div>
 			                    </div>
 			                    <div class="card">
 			                        <div class="card-block">
 			                            <img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+			                            <div class="overlay-buttons">	
+		                            		<div class="buttons">
+		                            			<button type="button" class="btn btn-primary" data-method="reset" title="Edit this image">
+										            <span >
+										              <span class="fa fa-edit"></span>
+										            </span>
+										        </button>
+										        <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Delete this image">
+										            <span>
+										              <span class="fa fa-trash-o"></span>
+										            </span>
+										        </button>
+		                            		</div>
+			                            </div>
 			                        </div>
 			                    </div>
 			                </div>
@@ -655,6 +735,7 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- Image Cropper JS -->
@@ -690,24 +771,8 @@
 		// Show Hide Gallery
 		$("#galleryShow").click(function(){
 		  $("#galleryTimeline").fadeIn();
-		  // console.log($('#galleryImages .image-card'));
-		 //  	var imageDrag = document.getElementById('galleryImages');
-			// var galleryPic = imageDrag.querySelector('.image-card img');
-			// console.log(galleryPic);
-			// if (galleryPic) {
-			// 	galleryPic.addEventListener( 'dragstart', function(event) {
-			// 	  event.dataTransfer.effectAllowed = 'all';
-			// 	  event.dataTransfer.setData( 'text', 'Test' );
-			// 	});
-			// 	galleryPic.addEventListener( 'drag', function(event) {
-			// 	  galleryPic.textContent = 'Drop effect: ' + event.dataTransfer.dropEffect;
-			// 	});
-
-			// 	galleryPic.addEventListener( 'dragend', function(event) {
-			// 	  galleryPic.textContent = '';
-			// 	});
-			// }
-			// });
+		 	$(".image-card").draggable();
+		});
 		$("#closeGallery").click(function(){
 		  $("#galleryTimeline").fadeOut();
 		  // $("#galleryTimeline").hide();
@@ -716,6 +781,10 @@
 		  $("#multiUpload").fadeOut();
 		  // $("#galleryTimeline").hide();
 		});
+		$( function() {
+			$( ".card-columns" ).sortable();
+			$( ".card-columns" ).disableSelection();
+		} );
 		// function drag(ev) {
 		// 	console.log('dragged');
 		// 	ev.stopPropagation()
@@ -723,9 +792,17 @@
 		//   	ev.dataTransfer.setData("text", ev.target.id);
 		// }
 
-		
+		// setTimeout(document.getElementById('main').style.display="none", 3000);
 
-
+		function resetCanvas () {
+			document.getElementById('fileDrop').style.display='block';
+			document.getElementById('main').style.overflow="hidden";
+        	document.getElementById('main').style.height="0";
+        	var x = document.getElementById('getCroppedCanvasModal');
+        	var y = x.querySelector('.modal-footer button');
+        	y.innerHTML = "Close";
+        	
+		}
   	</script>
     <!-- Materialize Scripts -->
     <!-- <script src="js/materialize.js"></script>
