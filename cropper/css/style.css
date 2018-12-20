@@ -367,7 +367,7 @@ label.btn {
 .recent-images h2 {
 	font-weight: 600;
 	padding: 15px 20px;
-    background: linear-gradient(to right, #0056B3,transparent);
+    background: linear-gradient(to right, #0056B3, #0073EF,transparent);
     /*border-radius: 60px;*/
     margin-bottom: 30px;
     color: #fff;

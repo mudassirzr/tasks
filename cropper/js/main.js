@@ -331,6 +331,7 @@ window.onload = function () {
   if (URL) {
     inputImage.onchange = function () {
       var files = this.files;
+      // console.log(files);
       var file;
       if (cropper && files && files.length) {
         document.getElementById('main').style.overflow="visible";
@@ -385,12 +386,69 @@ window.onload = function () {
       document.getElementById('main').style.overflow="hidden";
       document.getElementById('main').style.height=0;
   }
-  // while (inputImage || file_drop) {
-  //   console.log(inputImage);
-  //   console.log(file_drop);
-  //   document.getElementById('main').style.display="block";
-  // }
-  // var galleryImage = document.getElementByClassName('.gallery-images').querySelector('.image-card img');
-  // galleryImage.onclick()
+ 
 
-};
+
+// Edit Image function
+
+  function editImage(element) {
+    if (URL) {
+        var files = element;
+        console.log(element);
+        var file;
+        if (cropper && files && files.length) {/*
+          document.getElementById('main').style.overflow="visible";
+          document.getElementById('main').style.height="auto";
+          document.getElementById('fileDrop').style.display="none";*/
+          file = files[0];
+          if(files[1] === undefined) {
+            console.log('1 image');
+            uploadedImageType = file.type;
+            uploadedImageName = file.name;
+
+            if (uploadedImageURL) {
+              URL.revokeObjectURL(uploadedImageURL);
+            }
+
+            image.src = uploadedImageURL = file.src;
+            cropper.destroy();
+            cropper = new Cropper(image, options);
+            // inputImage.value = null;
+            
+          }
+        }
+    } else {
+        inputImage.disabled = true;
+        inputImage.parentNode.className += ' disabled';
+        /*document.getElementById('main').style.overflow="hidden";
+        document.getElementById('main').style.height=0;*/
+    }
+  };
+  $(".edit-button").click(function(){
+      // console.log($(this).parent().parent().prev().attr('src'));
+      var image = new Image();
+      image.src = $(this).parent().parent().prev().attr('src');
+      // console.log(image);
+      editImage($(this).parent().parent().prev());
+      // $images = $(this).parent().parent().prev();
+      // console.log($images);
+      // $.get($(this).parent().parent().prev(), function(){
+      //   // console.log($(this));
+      //   editImage($(this));
+      // });
+      // $file.attr('src',url);
+      // URL =  window.URL || window.webkitURL;
+      // var $file = URL.createObjectURL($image_url);
+
+      // $img = 
+      // editImage($image);
+      // console.log($image.toArray());
+    });
+
+  };
+
+// $(".edit-button").bind("click", editImage($(this).parent().parent().prev()));
+  $(".delete-button").click(function(){
+      console.log($(this).parent().parent().parent().parent());
+      $(this).parent().parent().parent().parent().css("display","none");
+    });
