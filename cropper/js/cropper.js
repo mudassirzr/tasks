@@ -3058,6 +3058,8 @@
       context.drawImage.apply(context, [source].concat(_toConsumableArray(params.map(function (param) {
         return Math.floor(normalizeDecimalNumber(param));
       }))));
+      // console.log(canvas);
+      // $('#overlays').show();
       return canvas;
     },
 

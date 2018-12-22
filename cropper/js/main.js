@@ -19,6 +19,7 @@ window.onload = function () {
     preview: '.img-preview',
     ready: function (e) {
       console.log(e.type);
+       $('#overlays').fadeOut();
     },
     cropstart: function (e) {
       console.log(e.type, e.detail.action);
@@ -293,12 +294,14 @@ window.onload = function () {
             var file;
             // alert(drop_files[0].name);
             if (cropper && files && files.length) {
-              document.getElementById('main').style.overflow="visible";
-              document.getElementById('main').style.height="auto";
-              document.getElementById('fileDrop').style.display="none";
+              
               file = files[0];
               // console.log('1 image');
               if (/^image\/\w+/.test(file.type)) {
+                document.getElementById('main').style.overflow="visible";
+                document.getElementById('main').style.height="auto";
+                document.getElementById('fileDrop').style.display="none";
+                $('#overlays').show();
                 uploadedImageType = file.type;
                 uploadedImageName = file.name;
 
@@ -309,6 +312,7 @@ window.onload = function () {
                 image.src = uploadedImageURL = URL.createObjectURL(file);
                 cropper.destroy();
                 cropper = new Cropper(image, options);
+                // $('#overlays').fadeOut();
                 file_drop.value = null;
               } else {
                 window.alert('Please choose an image file.');
@@ -334,13 +338,14 @@ window.onload = function () {
       // console.log(files);
       var file;
       if (cropper && files && files.length) {
-        document.getElementById('main').style.overflow="visible";
-        document.getElementById('main').style.height="auto";
-        document.getElementById('fileDrop').style.display="none";
         file = files[0];
         if(files[1] === undefined) {
           console.log('1 image');
           if (/^image\/\w+/.test(file.type)) {
+            document.getElementById('main').style.overflow="visible";
+            document.getElementById('main').style.height="auto";
+            document.getElementById('fileDrop').style.display="none";
+            $('#overlays').show();
             uploadedImageType = file.type;
             uploadedImageName = file.name;
 
@@ -350,6 +355,7 @@ window.onload = function () {
 
             image.src = uploadedImageURL = URL.createObjectURL(file);
             cropper.destroy();
+            // $('#overlays').fadeOut();
             cropper = new Cropper(image, options);
             inputImage.value = null;
           } else {
@@ -358,22 +364,27 @@ window.onload = function () {
         } else {
             console.log('multi images');
             var i;
+            $('#multiUpload').fadeIn();
             for (i=0;i<files.length;i++){
               file=files[i];
               if (/^image\/\w+/.test(file.type)) {
-              uploadedImageType = file.type;
-              uploadedImageName = file.name;
+                document.getElementById('main').style.overflow="visible";
+                document.getElementById('main').style.height="auto";
+                document.getElementById('fileDrop').style.display="none";
+                // uploadedImageType = file.type;
+                // uploadedImageName = file.name;
 
-                if (uploadedImageURL) {
-                  URL.revokeObjectURL(uploadedImageURL);
-                }
+                // if (uploadedImageURL) {
+                //   URL.revokeObjectURL(uploadedImageURL);
+                // }
                 // console.log(i);
-                image.src = uploadedImageURL = URL.createObjectURL(file);
+                image.src = URL.createObjectURL(file);
+                //   console.log(image);
                   // var uploads = document.getElementById('multiImages');
-                  $('#multiUpload').fadeIn();
-                  $('#multiImages').append("<div class=\"image-card\"><img src='" + image.src + "'></div>");
+                  
+                  $('#multiImages').append("<div class=\"image-card\"><img src='" + image.src + "'><div class=\"overlay-buttons-glry\"><div class=\"buttons\"><button type=\"button\" class=\"btn btn-primary edit-button-glry\" title=\"Edit this image\"><span class=\"fa fa-edit\"></span></button><button type=\"button\" class=\"btn btn-primary delete-button\" title=\"Delete this image\"><span class=\"fa fa-trash-o\"></span></button></div></div></div>");
             } else {
-              alert('File selected not an image');
+                alert('File selected not an image');
             }
           }
 
@@ -394,12 +405,9 @@ window.onload = function () {
   function editImage(element) {
     if (URL) {
         var files = element;
-        console.log(element);
+        // console.log(element);
         var file;
-        if (cropper && files && files.length) {/*
-          document.getElementById('main').style.overflow="visible";
-          document.getElementById('main').style.height="auto";
-          document.getElementById('fileDrop').style.display="none";*/
+        if (cropper && files && files.length) {
           file = files[0];
           if(files[1] === undefined) {
             console.log('1 image');
@@ -411,8 +419,10 @@ window.onload = function () {
             }
 
             image.src = uploadedImageURL = file.src;
+            // console.log(image);
             cropper.destroy();
             cropper = new Cropper(image, options);
+            // $('#overlays').fadeOut();
             // inputImage.value = null;
             
           }
@@ -424,31 +434,82 @@ window.onload = function () {
         document.getElementById('main').style.height=0;*/
     }
   };
-  $(".edit-button").click(function(){
-      // console.log($(this).parent().parent().prev().attr('src'));
-      var image = new Image();
-      image.src = $(this).parent().parent().prev().attr('src');
-      // console.log(image);
-      editImage($(this).parent().parent().prev());
-      // $images = $(this).parent().parent().prev();
-      // console.log($images);
-      // $.get($(this).parent().parent().prev(), function(){
-      //   // console.log($(this));
-      //   editImage($(this));
-      // });
-      // $file.attr('src',url);
-      // URL =  window.URL || window.webkitURL;
-      // var $file = URL.createObjectURL($image_url);
 
-      // $img = 
-      // editImage($image);
-      // console.log($image.toArray());
+  function editImageGallery(element) {
+    if (URL) {
+        var files = element;
+        // console.log(element);
+        var file;
+        if (cropper && files && files.length) {
+            file = files[0];
+            console.log('1 image');
+            uploadedImageType = file.type;
+            uploadedImageName = file.name;
+
+            if (uploadedImageURL) {
+              URL.revokeObjectURL(uploadedImageURL);
+            }
+
+            image.src = uploadedImageURL = file.src;
+            console.log(image);
+            cropper.destroy();
+            cropper = new Cropper(image, options);
+            // $('#overlays').fadeOut();
+        }
+    } else {
+        inputImage.disabled = true;
+        inputImage.parentNode.className += ' disabled';
+        /*document.getElementById('main').style.overflow="hidden";
+        document.getElementById('main').style.height=0;*/
+    }
+  };
+  $(".edit-button").click(function(){
+    $('#overlays').show();
+      editImage($(this).parent().parent().prev());
+    });
+
+  $(".gallery-images").on( 'click', '.edit-button-glry',function(){
+    console.log('called');
+    $('#overlays').show();
+      editImageGallery($(this).parent().parent().prev());
+    });
+  $(".gallery-images").on( 'click', '.delete-button',function(){
+      // console.log($(this).parent().parent().parent().parent());
+      $(this).parent().parent().parent().remove();
+    });
+      var dir = "images";
+    var fileextension = ".jpg";
+    // alert('hi');
+    $.ajax({
+        //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+        url: dir,
+        success: function (data) {
+            //List all .png file names in the page
+
+            $(data).find("a:contains(" + fileextension + ")").each(function () {
+              // $('#overlays').show();
+              var index = 0;
+                // var image_array;
+                
+                var filename =this.href.replace(window.location.host+'/tasks/cropper', "").replace("http://", "");
+                // console.log(dir);
+                // console.log(filename);
+                var image_array =[];
+                image_array[index]= '<img src='+'"'+ dir + filename +'"'+'>';
+                // console.log(image_array);
+                
+                // $("body").append("<img src='" + dir + filename + "'>");
+                // var gallery = document.getElementById('galleryTimeline'); for ajax won't work
+                $("#galleryImages").append("<div class=\"image-card\"><img src='" + dir + filename + "'><div class=\"overlay-buttons-glry\"><div class=\"buttons\"><button type=\"button\" class=\"btn btn-primary edit-button-glry\" title=\"Edit this image\"><span class=\"fa fa-edit\"></span></button><button type=\"button\" class=\"btn btn-primary delete-button\" title=\"Delete this image\"><span class=\"fa fa-trash-o\"></span></button></div></div></div>");
+                index++;
+            });
+        }
     });
 
   };
 
 // $(".edit-button").bind("click", editImage($(this).parent().parent().prev()));
   $(".delete-button").click(function(){
-      console.log($(this).parent().parent().parent().parent());
+      // console.log($(this).parent().parent().parent().parent());
       $(this).parent().parent().parent().parent().css("display","none");
     });

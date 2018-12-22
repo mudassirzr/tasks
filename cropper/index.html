@@ -167,20 +167,20 @@
 							            </span>
 							          </button>
 							        </div>
-
-							        <div class="btn-group">
-							          <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(0.1)">
-							              <span class="fa fa-search-plus"></span>
-							            </span>
-							          </button>
-							          <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(-0.1)">
-							              <span class="fa fa-search-minus"></span>
-							            </span>
-							          </button>
-							        </div>
-
+							        <div class="zoom-buttons">
+								        <div class="btn-group">
+								          <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
+								            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(0.1)">
+								              <span class="fa fa-search-plus"></span>
+								            </span>
+								          </button>
+								          <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+								            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(-0.1)">
+								              <span class="fa fa-search-minus"></span>
+								            </span>
+								          </button>
+								        </div>
+								    </div>
 							        <div class="btn-group move-buttons">
 							          <button type="button" class="btn btn-primary left-move" data-method="move" data-option="-10" data-second-option="0" title="Move Left">
 							            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(-10, 0)">
@@ -203,20 +203,20 @@
 							            </span>
 							          </button>
 							        </div>
-
-							        <div class="btn-group">
-							          <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(-45)">
-							              <span class="fa fa-rotate-left"></span>
-							            </span>
-							          </button>
-							          <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(45)">
-							              <span class="fa fa-rotate-right"></span>
-							            </span>
-							          </button>
-							        </div>
-
+							        <div class="rotate-buttons">
+								        <div class="btn-group">
+								          <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
+								            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(-45)">
+								              <span class="fa fa-rotate-left"></span>
+								            </span>
+								          </button>
+								          <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
+								            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(45)">
+								              <span class="fa fa-rotate-right"></span>
+								            </span>
+								          </button>
+								        </div>
+								    </div>
 							        <div class="btn-group">
 							          <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
 							            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scaleX(-1)">
@@ -281,7 +281,7 @@
 							            <div class="modal-content">
 							              <div class="modal-header">
 							                <h5 class="modal-title" id="getCroppedCanvasTitle">Cropped Image</h5>
-							                <button type="button" onclick="this.innerHTML='Continue Editing'" class="close" data-dismiss="modal" aria-label="Close">
+							                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							                  <span aria-hidden="true">&times;</span>
 							                </button>
 							              </div>
@@ -407,7 +407,7 @@
 							          </label>
 							        </div>
 
-							        <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
+							        <div class="btn-group d-flex flex-nowrap" data-toggle="buttons" style="display: none !important;">
 							          <label class="btn btn-primary active">
 							            <input type="radio" class="sr-only" id="viewMode0" name="viewMode" value="0" checked>
 							            <span class="docs-tooltip" data-toggle="tooltip" title="View Mode 0">
@@ -558,7 +558,7 @@
 							        </div><!-- /.dropdown --->
 							      </div><!-- /.docs-toggles -->
 							    </div>
-							        		<div class="row">
+							        		<div class="row" style="display: none;">
 									          <div class="col-lg-6 input-group input-group-sm">
 									            <span class="input-group-prepend">
 									              <label class="input-group-text" for="dataX">X</label>
@@ -730,7 +730,11 @@
 				
 			</div>
 		</div>
-		
+		<div id="overlays" style="display: none;">
+		     <div class="loading-icon">
+		     </div>
+		     
+		</div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
@@ -742,32 +746,7 @@
     <script src="js/cropper.js"></script>
   	<script src="js/main.js"></script>
   	<script>
-  		// console.log(jQuery);
-  		var dir = "images";
-		var fileextension = ".jpg";
-		// alert('hi');
-		$.ajax({
-		    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-		    url: dir,
-		    success: function (data) {
-		        //List all .png file names in the page
-		        $(data).find("a:contains(" + fileextension + ")").each(function () {
-		        	var index = 0;
-		            // var image_array;
-		            var filename =this.href.replace(window.location.host+'/tasks/cropper', "").replace("http://", "");
-		            // console.log(dir);
-		            // console.log(filename);
-		            var image_array =[];
-		            image_array[index]= '<img src='+'"'+ dir + filename +'"'+'>';
-		            // console.log(image_array);
-		            
-		            // $("body").append("<img src='" + dir + filename + "'>");
-		            // var gallery = document.getElementById('galleryTimeline'); for ajax won't work
-		            $("#galleryImages").append("<div class=\"image-card\"><img src='" + dir + filename + "'></div>");
-		            index++;
-		        });
-		    }
-		});
+
 		// Show Hide Gallery
 		$("#galleryShow").click(function(){
 		  $("#galleryTimeline").fadeIn();
@@ -786,16 +765,11 @@
 		$( function() {
 			$( ".card-columns" ).sortable();
 			$( ".card-columns" ).disableSelection();
+
+			$( ".gallery-images" ).sortable();
+			$( ".gallery-images" ).disableSelection();
 		} );
-		// function drag(ev) {
-		// 	console.log('dragged');
-		// 	ev.stopPropagation()
-  //         	ev.preventDefault()
-		//   	ev.dataTransfer.setData("text", ev.target.id);
-		// }
-
-		// setTimeout(document.getElementById('main').style.display="none", 3000);
-
+		
 		function resetCanvas () {
 			document.getElementById('fileDrop').style.display='block';
 			document.getElementById('main').style.overflow="hidden";
@@ -803,8 +777,23 @@
         	var x = document.getElementById('getCroppedCanvasModal');
         	var y = x.querySelector('.modal-footer button');
         	y.innerHTML = "Close";
-        	
+        	console.log('dfd');
+        	// $('#overlays').show();
+
+        	if($('#overlays').focus()){
+        		var i = 0;
+        		
+        		while(!($('overlays').focus())){
+        			i=1;
+        			if($('overlays').focus() && i ===1){
+        				$('overlays').fadeOut();
+        				break;
+        			}
+
+        		}
+        	}
 		}
+		// window.onload($('#overlay').fadeOut());
 		// $(".edit-button").bind("click", editImage($(this).parent().parent().prev()));
 		// $(".edit-button").click(function(){
 		// 	$image = $(this).parent().parent().prev();
@@ -820,6 +809,13 @@
 		// 	// editImage($image);
 		// 	// console.log($image.toArray());
 		// });
+
+		// show hide controls on hover
+		// $('.img-container').hover(
+		//   function(){$('.rotate-buttons').css({'display' : 'block'})},
+		//   function(){$('.rotate-buttons').css({'display' : 'none'})}
+		  // function(){$('#a').css('background', '')}
+		// );
   	</script>
     <!-- Materialize Scripts -->
     <!-- <script src="js/materialize.js"></script>
