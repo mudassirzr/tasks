@@ -62,6 +62,16 @@
 				</div>
 			</div>
 		</header>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="navigation-links">
+						<a id="back-uploads" class="back-link" onclick="location.reload()" href="#"><i class="fa fa-arrow-left"></i> BACK TO UPLOADS</a>
+						<a id="back-gallery" class="back-link" onclick="resetCanvas()" href="#"><i class="fa fa-arrow-left"></i> BACK TO GALLERY</a>
+					</div>
+				</div>
+			</div>
+		</div>
 		<section class="uploads">
 			<div class="container">
 				<div class="row">
@@ -711,8 +721,74 @@
 				</div>
 			</div>
 		</section>
+		<section id="gallerySection">
+			<div class="container">
+				<div class="row">
+					<h3>Gallery</h3>
+					<p>Select images to edit from Gallery</p>
+					<div id="galleryPhotos" class="photo-section">
+						<!-- <div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div>
+						<div class="photo">
+							<span class="checkbox"><i class="fa fa-check"></i></span>
+							<img src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
+						</div> -->
+					</div>
+					<div class="proceed-section">
+						<a href="#" class="proceed-button">PROCEED <i class="fa fa-chevron-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</section>
 
 		<div class="gallery-cards" id="galleryTimeline">
+			<h5>Click on edit icon on image to edit</h5>
 			<div class="close-button" id="closeGallery"><i class="fa fa-times-circle-o"></i></div>
 			<!-- <div class="image-card" style="">
 				<img style="" src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
@@ -722,6 +798,7 @@
 			</div>
 		</div>
 		<div class="gallery-cards" id="multiUpload">
+			<h5>Click on edit icon on image to edit</h5>
 			<div class="close-button" id="closeUploads"><i class="fa fa-times-circle-o"></i></div>
 			<!-- <div class="image-card" style="">
 				<img style="" src="https://www.desiblitz.com/wp-content/uploads/2015/02/veg-dishes-tasty.jpg">
@@ -747,17 +824,7 @@
   	<script src="js/main.js"></script>
   	<script>
 
-		// Show Hide Gallery
-		$("#galleryShow").click(function(){
-		  $("#galleryTimeline").fadeIn();
-		 	document.getElementById('main').style.overflow="visible";
-        	document.getElementById('main').style.height="auto";
-            document.getElementById('fileDrop').style.display="none"
-		});
-		$("#closeGallery").click(function(){
-		  $("#galleryTimeline").fadeOut();
-		  // $("#galleryTimeline").hide();
-		});
+		
 		$("#closeUploads").click(function(){
 		  $("#multiUpload").fadeOut();
 		  // $("#galleryTimeline").hide();
@@ -772,26 +839,16 @@
 		
 		function resetCanvas () {
 			document.getElementById('fileDrop').style.display='block';
-			document.getElementById('main').style.overflow="hidden";
-        	document.getElementById('main').style.height="0";
+			$("#main").css({
+              'overflow':'hidden',
+              'height': '0',
+              'margin':'0'
+            });
         	var x = document.getElementById('getCroppedCanvasModal');
         	var y = x.querySelector('.modal-footer button');
         	y.innerHTML = "Close";
         	console.log('dfd');
         	// $('#overlays').show();
-
-        	if($('#overlays').focus()){
-        		var i = 0;
-        		
-        		while(!($('overlays').focus())){
-        			i=1;
-        			if($('overlays').focus() && i ===1){
-        				$('overlays').fadeOut();
-        				break;
-        			}
-
-        		}
-        	}
 		}
 		// window.onload($('#overlay').fadeOut());
 		// $(".edit-button").bind("click", editImage($(this).parent().parent().prev()));

@@ -3,7 +3,12 @@ html, html a {
   -webkit-font-smoothing: antialiased !important;
 }
 
-
+html {
+	/*min-height: 100vh;*/
+	background: url('../bg/background-1.jpg') no-repeat left top;
+	/*background-size: cover;*/
+	/*background: linear-gradient(to right, #2c3e50, #2980b9, #2c3e50);*/
+}
 body {
   width: 100%;
   height: 100%;
@@ -15,6 +20,7 @@ body {
   background: transparent;
   text-rendering: optimizeLegibility;
   margin: 0;
+  min-height: 100vh;
 }
 .navbar-brand {
 	color: #fff;
@@ -50,13 +56,15 @@ body {
 	color: : #fff !important;
 }*/
 header {
-	-moz-box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
-	box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
+	/*-moz-box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
+	box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);*/
 	/*border-bottom: 1px solid rgba(0,0,0,0.14);*/
-	background: linear-gradient(#0056B3,#0073EF);
+	/*background: linear-gradient(#2c3e50,#2980b9);*/
 	position: relative;
 	animation: headerAnimation;
 	animation-duration: 0.5s;
+	border-bottom: 1px solid rgba(255,255,255,0.5);
+	padding: 15px 0;
 }
 #collapsibleNavbar {
 	height: 100%;
@@ -206,6 +214,7 @@ label.btn {
 @media (min-width: 768px) {
   .img-container {
     min-height: 497px;
+    box-shadow: 5px 8px 15px 0 rgba(32,33,36,0.4);
   }
 }
 
@@ -374,42 +383,32 @@ label.btn {
 	border-radius: 5px;
 }
 .recent-images h2 {
-	font-weight: 600;
-	padding: 15px 20px;
-    background: linear-gradient(to right, #0056B3, #0073EF,transparent);
+	font-weight: 400;
+	padding: 15px 0;
+    /*background: linear-gradient(to right, #2c3e50, #2980b9,transparent);*/
     /*border-radius: 60px;*/
     margin-bottom: 30px;
     color: #fff;
     text-shadow: 4px 4px 10px #000;
 }
- {
-	cursor: pointer;
-	width: 45%;
-	padding: 20px;
-	background:linear-gradient(to bottom, #ccc,#f8f8f8);
-	margin: 5px auto;
-	border-radius: 30px;
-	/*border: 2px dashed #c4c4c4;*/
-	color: #565656;
-	box-shadow: 0 1px 8px 0 rgba(32,33,36,0.28);
-	/*display: inline-block;*/
-}
 .upload-section {
 	/*height:200px;*/
 	width:70%;
-	border:2px dashed #0056B3;
+	/*border:2px dashed #2c3e50;*/
 	margin: 40px auto;
-	background: linear-gradient(#AAD2FC,#F4F9FF);
+	/*background: linear-gradient(#AAD2FC,#F4F9FF);*/
+	background: rgba(255,255,255,0.7);
 	padding: 30px 30px 10px 30px;
 	box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
 	animation: rotateIn;
     animation-duration: 0.5s;
+    border-radius: 5px;
 }
 .upload-section h4 {
 	margin-top: 20px;
 	font-size: 22px;
 	font-weight: 300;
-	color: #0056B3;
+	color: #2980b9;
 }
 .upload-section h4 span {
 	display: block;
@@ -420,7 +419,7 @@ label.btn {
 	font-size: 60px;
 	color: rgba(255,255,255,0.3);
 	-webkit-text-stroke-width: 1px;
-	-webkit-text-stroke-color: #0056B3;
+	-webkit-text-stroke-color: #2980b9;
 	margin: 0;
 }
 .gallery-button, .upload-button {
@@ -428,13 +427,19 @@ label.btn {
 	cursor: pointer;
 	width: 45%;
 	padding: 10px;
-	background: linear-gradient(#0056B3,#218CFF);
+	background: transparent;
 	margin: 5px auto;
-	color: #fff;
-	border-radius: 30px;
-	box-shadow: 0 1px 8px 0 rgba(32,33,36,0.28);
-	font-weight: 400;
+	color: #2980b9;
+	border-radius: 0;
+	border: 2px solid #2980b9;
+	/*box-shadow: 0 1px 8px 0 rgba(32,33,36,0.28);*/
+	font-weight: 600;
 	text-transform: uppercase;
+}
+.gallery-button:focus, .upload-button:focus, .gallery-button:hover, .upload-button:hover {
+	color: #fff;
+	background: linear-gradient(to right, #2c3e50, #2980b9);
+	border: none;
 }
 .gallery-button:active, .upload-button:active {
 	box-shadow: none;
@@ -473,7 +478,7 @@ label.btn {
 	width: 100px;
 	height: 80px;
 	position: relative;
-	/*border: 2px solid #0056B3;*/
+	/*border: 2px solid #2c3e50;*/
 	margin: 0 5px;
 	background: #fff;
 	cursor: grab;
@@ -641,8 +646,8 @@ label.btn {
 
 .loading-icon {
 	border: 10px solid #f3f3f3; 
-	border-top: 10px solid #0056B3;
-	border-bottom: 10px solid #0073EF; 
+	border-top: 10px solid #2c3e50;
+	border-bottom: 10px solid #2980b9; 
 	border-radius: 50%;
 	width: 80px;
 	height: 80px;
@@ -717,4 +722,137 @@ label.btn {
 	/*opacity: 0.8;*/
 	font-size: 15px;
 	color: #fff;
+}
+
+#gallerySection {
+	margin: 20px 0;
+	display: none;
+}
+
+#gallerySection h3 {
+	font-weight: 300;
+	font-size: 45px;
+	color: #fff;
+	text-align: center;
+	text-shadow: 4px 4px 10px #000;
+	display: block;
+	width: 100%;
+}
+#gallerySection p {
+	text-align: center;
+	color: #fff;
+	width: 100%;
+	font-size: 16px;
+	font-weight: 300;
+	letter-spacing: 1px;
+}
+.proceed-section {
+	text-align: right;
+	width: 100%;
+}
+.proceed-button {
+	border: 2px solid #fff;
+	color: #fff !important;
+	padding: 10px 40px;
+	font-weight: 600;
+	position: relative;
+}
+.proceed-button .fa {
+	font-size: 12px;
+}
+.proceed-button:hover, .proceed-button:focus {
+	color: #fff;
+	background: linear-gradient(to right, #2c3e50, #2980b9);
+	text-decoration: none;
+}
+.photo-section {
+	margin: 10px 0;
+}
+.photo {
+	width: 112px;
+	height: 112px;
+	box-shadow: 5px 8px 15px 0 rgba(32,33,36,0.4);
+	/*border-radius: 5px;*/
+	display: inline-block;
+	border: 1px solid #fff;
+	position: relative;
+	background: rgba(255,255,255,0.4);;
+	margin: 6px;
+	cursor: pointer;
+}
+.photo:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: rgba(0,0,0,0.4);
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	display: none;
+}
+.photo:hover:after {
+	display: block;
+}
+.photo img {
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+.photo .checkbox{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	height: 14px;
+	width: 14px;
+	border-radius: 50%;
+	background: #fff;
+	z-index: 2;
+	line-height: 14px;
+	font-size: 14px;
+	display: none;
+}
+.photo .checkbox .fa {
+	color: green;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #fff;
+}
+
+.back-link {
+	color: #fff;
+	font-size: 15px;
+	font-weight: 300;
+	position: relative;
+	margin-top: 10px;
+	display: none;
+}
+.back-link:hover,.back-link:focus {
+	color: #fff;
+	opacity: 0.7;
+	text-decoration: none;
+}
+.navigation-links {
+	margin-top: 20px;
+}
+
+.gallery-cards h5 {
+	font-weight: 400;
+	background: #fff;
+	border-radius: 30px 30px 0 0;
+	position: absolute;
+	left: 2px;
+	top: -15px;
+	color: #000;
+	z-index: 1;
+	padding: 2px 20px;
+	font-size: 15px;
 }

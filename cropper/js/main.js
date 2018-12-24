@@ -298,8 +298,12 @@ window.onload = function () {
               file = files[0];
               // console.log('1 image');
               if (/^image\/\w+/.test(file.type)) {
-                document.getElementById('main').style.overflow="visible";
-                document.getElementById('main').style.height="auto";
+                $("#back-uploads").show();
+                $("#main").css({
+                  'overflow':'visible',
+                  'height': 'auto',
+                  'margin-bottom':'100px'
+                })
                 document.getElementById('fileDrop').style.display="none";
                 $('#overlays').show();
                 uploadedImageType = file.type;
@@ -321,8 +325,11 @@ window.onload = function () {
         } else {
           file_drop.disabled = true;
           file_drop.parentNode.className += ' disabled';
-          document.getElementById('main').style.overflow="hidden";
-          document.getElementById('main').style.height=0;
+          $("#main").css({
+              'overflow':'hidden',
+              'height': '0',
+              'margin':'0'
+            });
         }
 
         },
@@ -342,8 +349,12 @@ window.onload = function () {
         if(files[1] === undefined) {
           console.log('1 image');
           if (/^image\/\w+/.test(file.type)) {
-            document.getElementById('main').style.overflow="visible";
-            document.getElementById('main').style.height="auto";
+            $("#back-uploads").show();
+            $("#main").css({
+              'overflow':'visible',
+              'height': 'auto',
+              'margin-bottom':'100px'
+            })
             document.getElementById('fileDrop').style.display="none";
             $('#overlays').show();
             uploadedImageType = file.type;
@@ -368,8 +379,12 @@ window.onload = function () {
             for (i=0;i<files.length;i++){
               file=files[i];
               if (/^image\/\w+/.test(file.type)) {
-                document.getElementById('main').style.overflow="visible";
-                document.getElementById('main').style.height="auto";
+                $("#back-uploads").show();
+                $("#main").css({
+                  'overflow':'visible',
+                  'height': 'auto',
+                  'margin-bottom':'100px'
+                })
                 document.getElementById('fileDrop').style.display="none";
                 // uploadedImageType = file.type;
                 // uploadedImageName = file.name;
@@ -394,8 +409,11 @@ window.onload = function () {
   } else {
       inputImage.disabled = true;
       inputImage.parentNode.className += ' disabled';
-      document.getElementById('main').style.overflow="hidden";
-      document.getElementById('main').style.height=0;
+      $("#main").css({
+              'overflow':'hidden',
+              'height': '0',
+              'margin':'0'
+            });
   }
  
 
@@ -477,7 +495,7 @@ window.onload = function () {
       // console.log($(this).parent().parent().parent().parent());
       $(this).parent().parent().parent().remove();
     });
-      var dir = "images";
+    var dir = "images";
     var fileextension = ".jpg";
     // alert('hi');
     $.ajax({
@@ -500,16 +518,94 @@ window.onload = function () {
                 
                 // $("body").append("<img src='" + dir + filename + "'>");
                 // var gallery = document.getElementById('galleryTimeline'); for ajax won't work
-                $("#galleryImages").append("<div class=\"image-card\"><img src='" + dir + filename + "'><div class=\"overlay-buttons-glry\"><div class=\"buttons\"><button type=\"button\" class=\"btn btn-primary edit-button-glry\" title=\"Edit this image\"><span class=\"fa fa-edit\"></span></button><button type=\"button\" class=\"btn btn-primary delete-button\" title=\"Delete this image\"><span class=\"fa fa-trash-o\"></span></button></div></div></div>");
+                // $("#galleryImages").append("<div class=\"image-card\"><img src='" + dir + filename + "'><div class=\"overlay-buttons-glry\"><div class=\"buttons\"><button type=\"button\" class=\"btn btn-primary edit-button-glry\" title=\"Edit this image\"><span class=\"fa fa-edit\"></span></button><button type=\"button\" class=\"btn btn-primary delete-button\" title=\"Delete this image\"><span class=\"fa fa-trash-o\"></span></button></div></div></div>");
+                // index++;
+                $("#galleryPhotos").append("<div class=\"photo\"><span class=\"checkbox\"><i class=\"fa fa-check\"></i></span><img src='" + dir + filename + "'></div>");
                 index++;
             });
         }
     });
 
+    $("#galleryPhotos").on( 'click', '.photo', function() {
+      console.log('abc');
+      $(this).toggleClass('img-selected');
+      if ($(this).find('.checkbox').css('display').toLowerCase()=='block') {
+        $(this).find('.checkbox').css({"display": "none"});
+      }
+      else {
+        $(this).find('.checkbox').css({"display": "block"});
+      }
+    });
+    $(".proceed-button").click(function(){
+      // alert('hi');
+      $("#gallerySection").hide();
+      $("#overlays").show();
+      if($(".img-selected").length){
+        $(".img-selected").each(function(){
+            var img = $(this).find('img');
+            // console.log(img[0].src);
+            $("#galleryImages").append("<div class=\"image-card\"><img src='" + img[0].src + "'><div class=\"overlay-buttons-glry\"><div class=\"buttons\"><button type=\"button\" class=\"btn btn-primary edit-button-glry\" title=\"Edit this image\"><span class=\"fa fa-edit\"></span></button><button type=\"button\" class=\"btn btn-primary delete-button\" title=\"Delete this image\"><span class=\"fa fa-trash-o\"></span></button></div></div></div>");
+            $("gallerySection").hide();
+            $("#galleryTimeline").fadeIn();
+            $("#main").css({
+              'overflow':'visible',
+              'height': 'auto',
+              'margin-bottom':'100px'
+            })
+            // document.getElementById('main').style.overflow="visible";
+            // document.getElementById('main').style.height="auto";
+            document.getElementById('fileDrop').style.display="none"
+        });
+        $("#back-gallery").show();
+        $("#back-uploads").hide();
+        $("#overlays").fadeOut();
+      } else {
+            alert("Please select an image to proceed");
+      }
+    });
+      
+  
   };
 
+  // Show Hide Gallery
+    $("#galleryShow").click(function(){
+      $("#gallerySection").show();
+      $(".uploads").hide();
+      $("#back-uploads").show();
+    });
+    $("#back-gallery").click(function(){
+      $("#main").css({
+              'overflow':'hidden',
+              'height': '0',
+              'margin':'0'
+            });
+      $("#gallerySection").css('margin-bottom','120px');
+      $("#gallerySection").show();
+      $("#back-gallery").hide();
+      $("#back-uploads").show();
+    });
+
+  $("#closeGallery").click(function(){
+      $("#galleryTimeline").fadeOut();
+      // $("#galleryTimeline").hide();
+    });
 // $(".edit-button").bind("click", editImage($(this).parent().parent().prev()));
   $(".delete-button").click(function(){
       // console.log($(this).parent().parent().parent().parent());
-      $(this).parent().parent().parent().parent().css("display","none");
-    });
+    $(this).parent().parent().parent().parent().css("display","none");
+  });
+
+  
+
+
+// $(".photo").click(function(){
+//       // console.log($(this).parent().parent().parent().parent());
+//       $(this).toggleClass('img-selected');
+//       if ($(this).find('.checkbox').css('display').toLowerCase()=='block') {
+//         $(this).find('.checkbox').css({"display": "none"});
+//       }
+//       else {
+//         $(this).find('.checkbox').css({"display": "block"});
+//       }
+    
+//   });
